@@ -1,0 +1,63 @@
+
+Usage: npm <command>
+
+where <command> is one of:
+    access, adduser, bin, bugs, c, cache, completion, config,
+    ddp, dedupe, deprecate, dist-tag, docs, edit, explore, get,
+    help, help-search, i, init, install, install-test, it, link,
+    list, ln, logout, ls, outdated, owner, pack, ping, prefix,
+    prune, publish, rb, rebuild, repo, restart, root, run,
+    run-script, s, se, search, set, shrinkwrap, star, stars,
+    start, stop, t, tag, team, test, tst, un, uninstall,
+    unpublish, unstar, up, update, v, version, view, whoami
+
+npm <cmd> -h     quick help on <cmd>
+npm -l           display full usage info
+npm help <term>  search for help on <term>
+npm help npm     involved overview
+
+Specify configs in the ini-formatted file:
+    /root/.npmrc
+or on the command line via: npm <command> --key value
+Config info can be viewed via: npm help config
+
+npm@3.8.9 /usr/local/node/lib/node_modules/npm
+应用实例，访问地址为 http://:::8888
+adrian aertger
+adrian aertger
+adrian aertger
+adrian aertger
+adrian aertger
+adrian aertger
+adrian aertger
+adrian aertger
+adrian aertger
+adrian aertger
+adrian aertger
+adrian aertger
+simon simon
+aedrfg simon
+undefined undefined
+undefined undefined
+undefined undefined
+undefined undefined
+undefined undefined
+adrian aertger
+adrian aertger
+adrian aertger
+aedrfg simon
+aedrfg simon
+undefined undefined
+主页 GET 请求
+events.js:160
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: Connection lost: The server closed the connection.
+    at Protocol.end (/data/wwwroot/nodejs/ZB/node_modules/mysql/lib/protocol/Protocol.js:109:13)
+    at Socket.<anonymous> (/data/wwwroot/nodejs/ZB/node_modules/mysql/lib/Connection.js:115:28)
+    at emitNone (events.js:91:20)
+    at Socket.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:926:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
