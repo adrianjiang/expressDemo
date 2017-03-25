@@ -8,3 +8,6 @@
 
 ##启动服务
 `npm start`
+
+##新建mysql数据库
+`CREATE DATABASE db170325;`
