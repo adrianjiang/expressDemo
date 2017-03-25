@@ -9,6 +9,8 @@ var index = require('./routes/index');
 // var users = require('./routes/api_user');
 // var hello = require('./routes/hello');
 var api_account = require('./routes/api_account');
+var api_machine = require('./routes/api_machine');
+
 
 
 
@@ -40,6 +42,8 @@ app.use('/', index);
 // app.use('/users', users);
 // app.use('/hello', hello);
 app.use('/account', api_account);
+app.use('/machine', api_machine);
+
 
 
 
