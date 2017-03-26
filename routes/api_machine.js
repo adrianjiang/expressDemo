@@ -11,9 +11,8 @@ router.get('/', function(req, res, next) {
 //add
 router.get('/add', function(req, res, next) {
     var id = req.query.id;
-    if(!id)res.send({
-        state: 3
-    });
+    if(!id){res.send({state: 3});return;}
+        
     var option = req.query.option;
     control.add(id, option, function(result){
         res.send(result);
@@ -23,11 +22,10 @@ router.get('/add', function(req, res, next) {
 //delete
 router.get('/delete', function(req, res, next) {
     var id = req.query.id;
-    if(!id)res.send({
-        state: 3
-    });
-    var name = req.query.name;
-    control.delete(id, name, function(result){
+    if(!id){res.send({state: 3});return;}
+    
+    var machineid = req.query.machineid;
+    control.delete(id, machineid, function(result){
         res.send(result);
     });
 });
@@ -35,49 +33,32 @@ router.get('/delete', function(req, res, next) {
 //get all
 router.get('/getall', function(req, res, next) {
     var id = req.query.id;
-    if(!id)res.send({
-        state: 3
-    });
+    if(!id){res.send({state: 3});return;}
     control.getall(id, function(result){
         res.send(result);
     });
 });
 //update
-router.get('/update', function(req, res, next) {
+router.get('/set', function(req, res, next) {
     var id = req.query.id;
-    if(!id)res.send({
-        state: 3
-    });
-    var pass = req.query.pass;
-
-    control.repass(id, pass, function(result){
+    if(!id){res.send({state: 3});return;}
+    var option = req.query.option;
+    console.log('option',option)
+    control.set(id, option, function(result){
         res.send(result);
     });
 });
 //get
 router.get('/get', function(req, res, next) {
     var id = req.query.id;
-    if(!id)res.send({
-        state: 3
-    });
-    var name = req.query.name;
+    if(!id){res.send({state: 3});return;}
+    var machineid = req.query.machineid;
 
-    control.repass(id, name, function(result){
-        res.send(result);
-    });
-});
-//get all
-router.get('/getall', function(req, res, next) {
-    var id = req.query.id;
-    if(!id)res.send({
-        state: 3
-    });
-    var name = req.query.name;
-
-    control.repass(id, name, function(result){
+    control.get(id, machineid, function(result){
         res.send(result);
     });
 });
 module.exports = router;
+
 
 

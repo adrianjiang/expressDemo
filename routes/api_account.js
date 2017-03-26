@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 router.get('/login', function(req, res, next) {
 	var name = req.query.name;
 	var pass = req.query.pass;
-	console.log(name,pass)
+	// console.log(name,pass)
 	control.login(name, pass, function(result){
 		res.send(result);
 	})
@@ -59,7 +59,7 @@ router.get('/repass', function(req, res, next) {
 	});
 	var pass = req.query.pass;
 
-	control.repass(id, pass, function(result){
+	control.set(id, pass, function(result){
 	  	res.send(result);
 	});
 });
@@ -73,6 +73,16 @@ router.get('/getuser', function(req, res, next) {
 	control.repass(id, name, function(result){
 	  	res.send(result);
 	});
+});
+router.get('/set', function(req, res, next) {
+    var id = req.query.id;
+    if(!id){res.send({state: 3});return;}
+    var option = req.query.option;
+    if(!option.name){res.send({state: 4});return;}
+    // console.log('option',option);
+    control.set(id, option, function(result){
+        res.send(result);
+    });
 });
 module.exports = router;
 

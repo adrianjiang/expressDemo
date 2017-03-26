@@ -4,10 +4,23 @@
 	<title>express测试</title>
 	<!-- <link rel="stylesheet" type="text/css" href="http://public.7east.cn/cdn/layui/css/layui.css"> -->
 	<link rel="stylesheet" href="http://public.7east.cn/cdn/bootstrap/bootstrap.css">
+	<script src="http://public.7east.cn/cdn/east/east-all.js" type="text/javascript" charset="utf-8"></script>
+
+	<style type="text/css">
+		h1{
+			margin-top: 10px;
+			margin-bottom: 5px;
+		}
+		form{
+			margin: 20px;
+			padding-left: 10px;
+			display: none;
+		}
+	</style>
 </head>
 <body>
 	<!-- <h1>登入</h1> -->
-	<form id="form-login">
+	<form id="form-login" class="form-inline">
 	  <div class="form-group">
 	    <label >name</label>
 	    <input type="test" class="form-control" eid="name" placeholder="name">
@@ -18,108 +31,264 @@
 	  </div>
 	  <div id="login" class="btn btn-success">登入</div>
 	</form>
-	<h1>所有用户信息</h1>
-	<table class="table table-condensed" id="table_alluser">
-		<tr>
-		  <td class="active">name</td>
-		  <td class="success">manage</td>
-		  <td class="warning">pn_user</td>
-		  <td class="danger">pn_export</td>
-		  <td class="info">pn_machine</td>
-		</tr>
+	
+
+	<form id="table-mymachine">
+		<h1>我的机器</h1>
+		<table class="table table-condensed" id="table_mymachine">
+			<tr>
+			  <td class="active">编号</td>
+			  <td class="success">名称</td>
+			  <td class="warning">型号</td>
+			  <td class="danger">牌照</td>
+			  <td class="info">使用单位</td>
+			  <td class="active">状态</td>
+			  <td class="success">位置</td>
+			  <td class="warning">问题</td>
+			  <td class="danger">备注</td>
+			  <td class="info">完好率</td>
+			</tr>
+		</table>		
+	</form>
+
+	<form id="table-alluser">
+		<h1>所有用户信息</h1>
+		<table class="table table-condensed" id="table_alluser">
+			<tr>
+			  <td class="active">name</td>
+			  <td class="success">manage</td>
+			  <td class="warning">pn_user</td>
+			  <td class="danger">pn_export</td>
+			  <td class="info">pn_machine</td>
+			</tr>
 
 
-	</table>
+		</table>		
+	</form>
+
+	<form id="form-adduser" class="form-inline">
 	<h1>添加用户</h1>
-	<form id="form-adduser">
+
 	  <div class="form-group">
 	    <label >name</label>
-	    <input type="test" class="form-control" eid="name" placeholder="name">
+	    <input type="text" class="form-control" eid="name" placeholder="name">
 	  </div>
 	  <div class="form-group">
 	    <label for="">password</label>
 	    <input type="password" class="form-control" eid="pass" placeholder="password">
 	  </div>
-	  <div class="checkbox">
-	    <label>
-	      <input type="checkbox"> 是否具有管理用户的权限
-	    </label>
+	  <div class="form-group">
+	    <label for="">管理的机器id</label>
+	    <input type="text" class="form-control" eid="manage" placeholder="1,2">
 	  </div>
-	  <div class="checkbox">
-	    <label>
-	      <input type="checkbox"> 是否具有管理机器的权限
-	    </label>
+	  <div class="form-group">
+	    <label for="">是否具有管理用户的权限</label>
+	    <input type="text" class="form-control" eid="pn_user" placeholder="false">
 	  </div>
-	  <div class="checkbox">
-	    <label>
-	      <input type="checkbox"> 是否具有导出报表的权限
-	    </label>
+	  <div class="form-group">
+	    <label for="">是否具有管理机器的权限</label>
+	    <input type="text" class="form-control" eid="pn_machine" placeholder="false">
 	  </div>
+	  <div class="form-group">
+	    <label for="">是否具有导出报表的权限</label>
+	    <input type="text" class="form-control" eid="pn_export" placeholder="false">
+	  </div>
+	
 	  <div id="adduser" class="btn btn-success">添加</div>
 	</form>
 
-	<h1>删除用户</h1>
-	<form id="form-deluser">
-	    <select class="form-control" eid="name">
+	
+	<form id="form-deluser" class="form-inline">
+	    <h1>删除用户</h1>
+		<div class="form-group">
+		    <label >选择用户</label>
+		    <select class="form-control" eid="name">
 
-		</select>
+			</select>
+		</div>
 	 
-	  <div id="deluser" class="btn btn-success">登入</div>
+	  <div id="deluser" class="btn btn-danger">删除</div>
 	</form>
 
-	<h1>修改自己的密码</h1>
-	<form id="form-remypass">
+	
+	<form id="form-remypass" class="form-inline">
+		<h1>修改自己的密码</h1>
 	  <div class="form-group">
-	    <label for="exampleInputEmail1">pass</label>
+	    <label >pass</label>
 	    <input type="password" class="form-control" eid="pass" placeholder="pass">
 	  </div>
 
 	 
-	  <div id="remypass" class="btn btn-success">登入</div>
+	  <div id="remypass" class="btn btn-success">修改</div>
 	</form>
 
+	
+	<form id="form-reuser" class="form-inline">
 	<h1>修改别人信息</h1>
-	<form id="form-reuser">
-		<select class="form-control" eid="name">
-
-		</select>
+		<div class="form-group">
+		    <label >name</label>
+		    <input type="text" class="form-control" eid="name" placeholder="name">
+		  </div>
+		  <div class="form-group">
+		    <label for="">password</label>
+		    <input type="password" class="form-control" eid="pass" placeholder="password">
+		  </div>
+		  <div class="form-group">
+		    <label for="">管理的机器id</label>
+		    <input type="text" class="form-control" eid="manage" placeholder="1,2">
+		  </div>
+		  <div class="form-group">
+		    <label for="">是否具有管理用户的权限</label>
+		    <input type="text" class="form-control" eid="pn_user" placeholder="false">
+		  </div>
+		  <div class="form-group">
+		    <label for="">是否具有管理机器的权限</label>
+		    <input type="text" class="form-control" eid="pn_machine" placeholder="false">
+		  </div>
+		  <div class="form-group">
+		    <label for="">是否具有导出报表的权限</label>
+		    <input type="text" class="form-control" eid="pn_export" placeholder="false">
+		  </div>
 	 
-	  <div class="form-group">
-	    <label for="">password</label>
-	    <input type="password" class="form-control" id="select_reuser" eid="pass" placeholder="password">
-	  </div>
-	  <div class="checkbox">
-	    <label>
-	      <input type="checkbox"> 是否具有管理用户的权限
-	    </label>
-	  </div>
-	  <div class="checkbox">
-	    <label>
-	      <input type="checkbox"> 是否具有管理机器的权限
-	    </label>
-	  </div>
-	  <div class="checkbox">
-	    <label>
-	      <input type="checkbox"> 是否具有导出报表的权限
-	    </label>
-	  </div>
-	 
-	  <div id="reuser" class="btn btn-success">登入</div>
+	  <div id="reuser" class="btn btn-success">修改</div>
 	</form>
 
+	
+	<form id="form-addmachine" class="form-inline">
+		<h1>添加机器</h1>
+	  <div class="form-group">
+	    <label >编号</label>
+	    <input type="text" class="form-control"  eid="number" placeholder="number">
+	  </div>
+	  <div eid="random" class="btn btn-success">生成随机编号</div>
+	  <div class="form-group">
+	    <label >名称</label>
+	    <input type="text" class="form-control"  eid="name" placeholder="name">
+	  </div>
+	  <div class="form-group">
+	    <label for="">型号</label>
+	    <input type="text" class="form-control"  eid="modelnum" placeholder="modelnum">
+	  </div>
+	  <div class="form-group">
+	    <label for="">牌照</label>
+	    <input type="text" class="form-control"  eid="licensenum" placeholder="licensenum">
+	  </div>
+	  <div class="form-group">
+	    <label for="">使用单位</label>
+	    <input type="text" class="form-control"  eid="user" placeholder="user">
+	  </div>
+	  <div class="form-group">
+	    <label for="">状态</label>
+	    <input type="text" class="form-control"  eid="state" placeholder="state">
+	  </div>
+	  <div class="form-group">
+	    <label for="">位置</label>
+	    <input type="text" class="form-control"  eid="seat" placeholder="seat">
+	  </div>
+	  <div class="form-group">
+	    <label for="">问题</label>
+	    <input type="text" class="form-control"  eid="problem" placeholder="problem">
+	  </div>
+	  <div class="form-group">
+	    <label for="">备注</label>
+	    <input type="text" class="form-control"  eid="note" placeholder="note">
+	  </div>
+	  <div class="form-group">
+	    <label for="">完好率</label>
+	    <input type="text" class="form-control"  eid="pipe" placeholder="pipe">
+	  </div>
+	 
+	 
+	  <div id="addmachine" class="btn btn-success">添加机器</div>
+	</form>
+
+	<form id="table-allmachine">
+		<h1>所有机器信息</h1>
+		<table class="table table-condensed" id="table_allmachine">
+			<tr>
+			  <td class="active">编号</td>
+			  <td class="success">名称</td>
+			  <td class="warning">型号</td>
+			  <td class="danger">牌照</td>
+			  <td class="info">使用单位</td>
+			  <td class="active">状态</td>
+			  <td class="success">位置</td>
+			  <td class="warning">问题</td>
+			  <td class="danger">备注</td>
+			  <td class="info">完好率</td>
+			</tr>
 
 
+		</table>		
+	</form>
 
+	<form id="form-delmachine" class="form-inline">
+		<h1>删除机器</h1>
 
+	  <div class="form-group">
+	    <label >输入机器id</label>
+	    <input type="text" class="form-control" eid="id" placeholder="pass">
+	  </div>
 
-
+	 
+	  <div id="delmachine" class="btn btn-danger">删除机器</div>
+	</form>
+	<form id="form-setmachine" class="form-inline">
+		<h1>修改机器</h1>
+	  <div class="form-group">
+	    <label >id</label>
+	    <input type="text" class="form-control"  eid="id" placeholder="number">
+	  </div>
+	  <div class="form-group">
+	    <label >编号</label>
+	    <input type="text" class="form-control"  eid="number" placeholder="number">
+	  </div>
+	  <div class="form-group">
+	    <label >名称</label>
+	    <input type="text" class="form-control"  eid="name" placeholder="name">
+	  </div>
+	  <div class="form-group">
+	    <label for="">型号</label>
+	    <input type="text" class="form-control"  eid="modelnum" placeholder="modelnum">
+	  </div>
+	  <div class="form-group">
+	    <label for="">牌照</label>
+	    <input type="text" class="form-control"  eid="licensenum" placeholder="licensenum">
+	  </div>
+	  <div class="form-group">
+	    <label for="">使用单位</label>
+	    <input type="text" class="form-control"  eid="user" placeholder="user">
+	  </div>
+	  <div class="form-group">
+	    <label for="">状态</label>
+	    <input type="text" class="form-control"  eid="state" placeholder="state">
+	  </div>
+	  <div class="form-group">
+	    <label for="">位置</label>
+	    <input type="text" class="form-control"  eid="seat" placeholder="seat">
+	  </div>
+	  <div class="form-group">
+	    <label for="">问题</label>
+	    <input type="text" class="form-control"  eid="problem" placeholder="problem">
+	  </div>
+	  <div class="form-group">
+	    <label for="">备注</label>
+	    <input type="text" class="form-control"  eid="note" placeholder="note">
+	  </div>
+	  <div class="form-group">
+	    <label for="">完好率</label>
+	    <input type="text" class="form-control"  eid="pipe" placeholder="pipe">
+	  </div>
+	 
+	 
+	  <div id="setmachine" class="btn btn-success">修改机器</div>
+	</form>
 
 
 
 
 
 	<!-- <script src="http://public.7east.cn/cdn/layui/layui.js" type="text/javascript" charset="utf-8"></script> -->
-	<script src="http://public.7east.cn/cdn/east/east-all.js" type="text/javascript" charset="utf-8"></script>
 	<script src="./js/e.js" charset="utf-8"></script>
 	<script src="./js/app.js" charset="utf-8"></script>
 

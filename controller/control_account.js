@@ -9,10 +9,10 @@ require('./east-server');
 
 var db = require('./db');
 
-var table_name = 'user';
+var table_name = 'account';
 
 function create_db(){
-	var sql = 'CREATE TABLE `user';
+	var sql = 'CREATE TABLE `' + table_name;
 	sql += '`(';
 	sql += '`id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY ,';
 	sql += '`name` varchar(255),';
@@ -22,13 +22,13 @@ function create_db(){
 	sql += '`pn_export` varchar(10),';
 	sql += '`pn_machine` varchar(10),';
 	sql += '`pn_root` varchar(10)';
-	sql += ')';
+	sql += ')ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;';
 
 	// console.log('创建数据表',sql);
 
 	db.db170325.query(sql, function(err,result){
 		if(err){
-			console.log('创建user数据表失败 - ',err.message);
+			console.log('创建account数据表失败 - ',err.message);
 			return;
 	    }  
 	    user_add({
@@ -41,7 +41,7 @@ function create_db(){
 			pn_root : 'true'
 	    });
 
-	    console.log('*****创建user数据表成功');
+	    console.log('*****创建account数据表成功');
 	});
 }
 
@@ -49,14 +49,14 @@ function create_db(){
 function init(){
 	mysql_init.user = true;
 
-	var sql = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME='user' ;";
+	var sql = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME='"+ table_name +"' ;";
 
 	db.db170325.query(sql,function (err, result) {
         if(err){
           	return;
         }    
         // console.log('result',result.length);   
-		if(result.length == 1){//还未创建数据表
+		if(result.length == 0){//还未创建数据表
 			create_db();
 		}else{
 			
@@ -74,7 +74,7 @@ function user_add(data, callback){
 		pn_machine = data.pn_machine || 'false',
 		pn_root = data.pn_root || 'false';
 	// console.log(name,pass,manage,pn_user,pn_export,pn_machine,pn_root)
-	var  userAddSql = 'INSERT INTO user(name,pass,manage,pn_user,pn_export,pn_machine,pn_root) VALUES(?,?,?,?,?,?,?)';
+	var  userAddSql = 'INSERT INTO '+ table_name +'(name,pass,manage,pn_user,pn_export,pn_machine,pn_root) VALUES(?,?,?,?,?,?,?)';
 	var  userAddSql_Params = [name, pass, manage, pn_user, pn_export, pn_machine, pn_root];
 
 	//增 add
@@ -298,5 +298,44 @@ exports.getuser = function(id,name,callback){
 
 	})
 }
+exports.get_byid = function(myid,callback){
 
 
+	user_get_byid(myid, function(result){
+		if(result.state != 1){
+			callback({state: 3, info: '您没有权限'});//有非法操作，警报
+			return;		
+		}
+		callback(result.data);
+	})
+}
+
+
+exports.set = function(id,option,callback){
+    var data = option;
+    var name   = data.name;        
+    var pass   = data.pass;        
+    var manage     = data.manage;
+    var pn_user    = data.pn_user;
+    var pn_machine  = data.pn_machine;
+    var pn_export     = data.pn_export; 
+
+    user_get_byid(id, function(result){
+
+        if(result.data.pn_user == 'true'){
+            var ModSql = 'UPDATE ' + table_name + ' SET pass=?,manage=?,pn_user=?,pn_machine=?,pn_export=? WHERE name = ?';
+            var ModSql_Params = [pass,manage,pn_user,pn_machine,pn_export, name];
+            //改 up
+            db.db170325.query(ModSql,ModSql_Params,function (err, result) {
+                if(err){
+                    console.log('[UPDATE ERROR] - ',err.message);
+                    return;
+                }     
+                callback({
+                    state: 1
+                })
+            }); 
+        }
+
+    })
+}
