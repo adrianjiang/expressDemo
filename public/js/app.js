@@ -21,6 +21,10 @@ $('#login').click(function(){
 
 			if(data.pn_root == 'true'){
 				$('form').show();
+				init_adduser();
+				init_delete();
+				show_alluser();
+				init_allmachine();
 				return;
 			}
 			if(data.pn_user == 'true'){
